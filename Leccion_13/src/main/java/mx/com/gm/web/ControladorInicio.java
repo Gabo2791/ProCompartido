@@ -30,6 +30,12 @@ public class ControladorInicio {
         log.info("Ejecutando el controlador Spring MVC");
         log.info("***-->Usuario que hizo login: " + user);
         model.addAttribute("personas", personas);
+        var saldoTotal=0D;
+        for (var p:personas) {
+        	saldoTotal+=p.getSaldo();
+        }
+        model.addAttribute("saldoTotal", saldoTotal);
+        model.addAttribute("totalClientes", personas.size());
         System.out.println("se carga el mapeo de clases");
         return "index";
     }
@@ -62,5 +68,4 @@ public class ControladorInicio {
     	personaService.eliminar(persona);
     	return "redirect:/";
     }
-    
 }
